@@ -5,12 +5,14 @@ export async function middleware(req: NextRequest, ev: NextFetchEvent) {
 
   const slugFetch = await fetch(`${req.nextUrl.origin}/api/get-url/${slug}`);
   if (slugFetch.status === 404) {
-    return NextResponse.redirect(req.nextUrl.origin);
+    console.log(req.nextUrl.origin)
+    // return NextResponse.redirect(req.nextUrl.origin);
   }
-  const data = await slugFetch.json();
+  const data =  slugFetch
 
-  if (data?.url) {
-    return NextResponse.redirect(data.url);
+  if (data.url) {
+    return console.log(data.url, 2)
+    // return NextResponse.redirect(data.url);
   }
 }
 
